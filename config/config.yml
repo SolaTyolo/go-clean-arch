@@ -1,0 +1,14 @@
+app:
+  name: 'go-clean-arch'
+  version: '1.0.0'
+
+
+http:
+  port: "8081"
+
+grpc:
+  addr: ":50051"
+  use_gateway: true
+
+logger:
+  log_level: 'debug'

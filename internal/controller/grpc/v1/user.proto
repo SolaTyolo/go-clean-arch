@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package co.github.example;
+
+import "google/protobuf/empty.proto";
+import "google/api/annotations.proto";
+
+option go_package = "internal/controller/grpc/v1";
+
+service UserService {
+  rpc GetUser(GetUserRequest) returns (User) {
+    option (google.api.http) = {
+      get: "/v1/user/{user_id}"
+    };
+  } 
+  // 更新 eUser
+  rpc UpsertUser(UpsertUserInput) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      post: "/v1/user"
+      body: "*"
+    };
+  }
+}
+
+
+message User {
+  string id = 1;
+  string name = 2;
+  string  user_type = 3;
+  string create_date =4;
+
+}
+
+message GetUserRequest {
+  string user_id = 1;
+}
+
+message UpsertUserInput {
+  string name = 1;
+  string age = 2;
+}
+
